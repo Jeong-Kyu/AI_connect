@@ -8,6 +8,9 @@ from copy import deepcopy
 from pathlib import Path
 from threading import Thread
 
+import os
+os.environ['KMP_DUPLICATE_LIB_OK']='True'
+
 import numpy as np
 import torch.distributed as dist
 import torch.nn as nn
@@ -455,7 +458,7 @@ if __name__ == '__main__':
     parser.add_argument('--cfg', type=str, default='models/yolov5s.yaml', help='model.yaml path')
     parser.add_argument('--data', type=str, default='data/drowsy_face.yaml', help='data.yaml path')
     parser.add_argument('--hyp', type=str, default='data/hyp.scratch.yaml', help='hyperparameters path')
-    parser.add_argument('--epochs', type=int, default=20)
+    parser.add_argument('--epochs', type=int, default=1)
     parser.add_argument('--batch-size', type=int, default=16, help='total batch size for all GPUs')
     parser.add_argument('--img-size', nargs='+', type=int, default=[640, 640], help='[train, test] image sizes')
     parser.add_argument('--rect', action='store_true', help='rectangular training')
